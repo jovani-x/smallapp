@@ -1,0 +1,7 @@
+.ant-form.ant-form-inline {
+  justify-content: center;
+}
+
+.ant-form-inline .ant-form-item {
+  margin: 10px;
+}
