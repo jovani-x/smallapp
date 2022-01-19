@@ -1,0 +1,15 @@
+.result-list {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.result-list .ant-card {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.result-list .ant-card .ant-card-meta-description ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
