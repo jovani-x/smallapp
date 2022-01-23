@@ -1,12 +1,13 @@
 import { Row, Col, Card } from 'antd';
 import 'antd/dist/antd.css';
 import './ResultList.css';
+import noimage from './no-image.jpg';
 
 const { Meta } = Card;
 
 const ResultList = (props) => {
   const movieList = props.data.map((el) => {
-    const coverItem = el.Poster === 'N/A' ? 'no-cover.jpg' : el.Poster;
+    const coverItem = el.Poster === 'N/A' ? noimage : el.Poster;
     
     return <Col span={8} key={el.imdbID}>
       <Card cover={<img alt={el.Title} src={coverItem} />}>

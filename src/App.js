@@ -2,7 +2,8 @@ import { Layout, Row, Col, Card } from 'antd';
 import 'antd/dist/antd.css';
 import './App.css';
 import SearchForm from './components/SearchForm';
-import ResultList from './components/ResultList';
+import ShowResult from './components/ShowResult';
+
 import { useState, useEffect } from 'react';
 
 const { Content } = Layout;
@@ -13,6 +14,7 @@ function App() {
   const [movieList, setMovieList] = useState([]);
   const [movieTitle, setMovieTitle] = useState('');
   const [movieYear, setMovieYear] = useState('');
+  const [isWelcome, setIsWelcome] = useState(true);
 
   const handleFormFinish = (name, { values }) => {
     Object.keys(values).map((key) => {
@@ -22,6 +24,10 @@ function App() {
         setMovieYear( values[key] );
       }
     });
+
+    if (isWelcome && movieList.length === 0) {
+      setIsWelcome(false);
+    }
   }
 
   useEffect( findMovie, [movieTitle, movieYear] );
@@ -35,7 +41,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (data.Response === 'False') {
-
+          setMovieList( [] );
         } else if (data.Search) {
           // data.Search
           // { Title, Poster, Type, Year, imdbID }
@@ -59,7 +65,7 @@ function App() {
         <Content>
           <Row justify="center">
             <Col span={15}>
-              <ResultList data={movieList} />
+              <ShowResult movieList={movieList} isWelcome={isWelcome} />
             </Col>
           </Row>
         </Content>
