@@ -7,7 +7,7 @@ const ShowResult = (props) => {
       ? <Result title="Welcome. Try find some movie." /> 
       : props.movieList.length === 0
         ? <Result status="warning" title="There is no items. Please, try again." />
-        : <ResultList data={props.movieList} />
+        : <ResultList data={props.movieList} handleShowDetails={props.handleShowDetails} />
   )
 }
 

@@ -10,7 +10,7 @@ const ResultList = (props) => {
     const coverItem = el.Poster === 'N/A' ? noimage : el.Poster;
     
     return <Col span={8} key={el.imdbID}>
-      <Card cover={<img alt={el.Title} src={coverItem} />}>
+      <Card cover={<img alt={el.Title} src={coverItem} />} onClick={() => props.handleShowDetails(el.imdbID)}>
         <Meta title={el.Title} description={<ul><li>{el.Year}</li><li>{el.Type}</li></ul>} />
       </Card>
     </Col>
