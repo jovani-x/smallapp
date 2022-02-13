@@ -1,0 +1,15 @@
+@import 'variables.scss';
+
+.ant-form.ant-form-inline {
+  justify-content: center;
+
+	.ant-form-item {
+		margin: 10px;
+	}
+
+	.ant-input {
+		border-radius: 2px 10px;
+		border-color: $blue;
+		background: rgba($blue, 0.1);
+	}
+}

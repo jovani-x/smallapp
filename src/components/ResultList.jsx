@@ -1,6 +1,6 @@
 import { Row, Col, Card } from 'antd';
 import 'antd/dist/antd.css';
-import './ResultList.css';
+import './ResultList.scss';
 import noimage from './no-image.jpg';
 
 const { Meta } = Card;
@@ -11,7 +11,7 @@ const ResultList = (props) => {
     
     return <Col span={8} key={el.imdbID}>
       <Card cover={<img alt={el.Title} src={coverItem} />} onClick={() => props.handleShowDetails(el.imdbID)}>
-        <Meta title={el.Title} description={<ul><li>{el.Year}</li><li>{el.Type}</li></ul>} />
+        <Meta title={el.Title} /*description={<ul><li>{el.Year}</li><li>{el.Type}</li></ul>}*/ />
       </Card>
     </Col>
   });

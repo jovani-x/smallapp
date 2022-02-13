@@ -1,6 +1,6 @@
 import { Layout, Row, Col, Card, Modal, List } from 'antd';
 import 'antd/dist/antd.css';
-import './App.css';
+import './App.scss';
 import SearchForm from './components/SearchForm';
 import ShowResult from './components/ShowResult';
 

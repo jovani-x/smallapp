@@ -1,7 +1,7 @@
 import { Form, Input, Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import './SearchForm.css';
+import './SearchForm.scss';
 
 const SearchForm = (props) => {
   const [form] = Form.useForm();

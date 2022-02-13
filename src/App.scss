@@ -1,0 +1,10 @@
+@import 'components/variables.scss';
+
+.ant-card {
+  text-align: center;
+}
+
+.ant-card-head {
+	background: $blue;
+	color: #fff;
+}
