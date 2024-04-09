@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/smallapp/static/css/main.b2f7df5c.css",
-    "main.js": "/smallapp/static/js/main.e02c9bad.js",
+    "main.css": "/smallapp/static/css/main.113475df.css",
+    "main.js": "/smallapp/static/js/main.a6130ce7.js",
     "index.html": "/smallapp/index.html",
-    "main.b2f7df5c.css.map": "/smallapp/static/css/main.b2f7df5c.css.map",
-    "main.e02c9bad.js.map": "/smallapp/static/js/main.e02c9bad.js.map"
+    "main.113475df.css.map": "/smallapp/static/css/main.113475df.css.map",
+    "main.a6130ce7.js.map": "/smallapp/static/js/main.a6130ce7.js.map"
   },
   "entrypoints": [
-    "static/css/main.b2f7df5c.css",
-    "static/js/main.e02c9bad.js"
+    "static/css/main.113475df.css",
+    "static/js/main.a6130ce7.js"
   ]
 }
