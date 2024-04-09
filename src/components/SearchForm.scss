@@ -1,15 +1,41 @@
-@import 'variables.scss';
+@import "variables.scss";
+@import "mixins.scss";
 
 .ant-form.ant-form-inline {
   justify-content: center;
 
-	.ant-form-item {
-		margin: 10px;
-	}
+  @include phone-only {
+    flex-direction: column;
+  }
 
-	.ant-input {
-		border-radius: 2px 10px;
-		border-color: $blue;
-		background: rgba($blue, 0.1);
-	}
+  .ant-form-item {
+    margin: 10px;
+
+    @include phone-only {
+      flex-wrap: nowrap;
+    }
+
+    .ant-form-item-label {
+      @include phone-only {
+        flex-basis: 25%;
+        max-width: 25%;
+        padding-bottom: 0;
+      }
+    }
+
+    .ant-form-item-control {
+      &:not(:only-child) {
+        @include phone-only {
+          flex-basis: 75%;
+          max-width: 75%;
+        }
+      }
+    }
+  }
+
+  .ant-input {
+    border-radius: 2px 10px;
+    border-color: $blue;
+    background: rgba($blue, 0.1);
+  }
 }

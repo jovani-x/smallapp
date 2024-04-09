@@ -4,7 +4,7 @@ import './App.scss';
 import SearchForm from './components/SearchForm';
 import ShowResult from './components/ShowResult';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const { Content } = Layout;
 
@@ -13,43 +13,44 @@ function App() {
 	const api_key = process.env.REACT_APP_OMDBAPI_API_KEY;
 
 	const [movieList, setMovieList] = useState([]);
-	const [movieTitle, setMovieTitle] = useState('');
-	const [movieYear, setMovieYear] = useState('');
 	const [isWelcome, setIsWelcome] = useState(true);
 	const [selectedMovie, setSelectedMovie] = useState(null);
 
-	const handleFormFinish = (name, { values }) => {
+	const handleFormFinish = (_name, { values }) => {
+		const movieParams = {};
+
 		Object.keys(values).map((key) => {
 			if (key === 'title') {
-				setMovieTitle(values[key]);
+				movieParams.movieTitle = values[key];
 			} else if (key === 'year') {
-				setMovieYear(values[key]);
+				movieParams.movieYear = values[key];
 			}
 		});
 
-		if (isWelcome && movieList.length === 0) {
-			setIsWelcome(false);
-		}
+		findMovie(movieParams);
 	}
 
-	useEffect(findMovie, [movieTitle, movieYear]);
-
-	function findMovie() {
+	async function findMovie({ movieTitle, movieYear }) {
 		const title = movieTitle ? `s=${movieTitle}&` : '';
 		const year = movieYear ? `y=${movieYear}&` : '';
 		const queryStr = `${api_url}${title}${year}plot=full&apikey=${api_key}`;
 
-		fetch(queryStr)
-			.then(response => response.json())
-			.then(data => {
-				if (data.Response === 'False') {
-					setMovieList([]);
-				} else if (data.Search) {
-					// data.Search
-					// { Title, Poster, Type, Year, imdbID }
-					setMovieList(data.Search);
-				}
-			});
+		if (title === '' && year === '') {
+			setIsWelcome(true);
+		} else {
+			await fetch(queryStr)
+				.then(response => response.json())
+				.then(data => {
+					if (data.Response === 'False') {
+						setMovieList([]);
+					} else if (data.Search) {
+						// data.Search
+						// { Title, Poster, Type, Year, imdbID }
+						setMovieList(data.Search);
+					}
+				});
+			setIsWelcome(false);
+		}
 	}
 
 	const handleShowDetails = (imdbID) => {
@@ -95,7 +96,7 @@ function App() {
 				<Content>
 					<Card title="Find Movie">
 						<Row justify="center">
-							<Col span={12}>
+							<Col span={24}>
 								<SearchForm onValuesChanged={handleFormFinish} />
 							</Col>
 						</Row>
@@ -103,7 +104,7 @@ function App() {
 				</Content>
 				<Content>
 					<Row justify="center">
-						<Col span={15}>
+						<Col xs={15} xxl={12}>
 							<ShowResult movieList={movieList} isWelcome={isWelcome} handleShowDetails={handleShowDetails} />
 							<Modal
 								title={selectedMovie ? selectedMovie.Title : ''}
